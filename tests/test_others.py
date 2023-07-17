@@ -1,6 +1,6 @@
 import numpy as np
 
-from symmatnp import SymMat
+from symmatnp.symmat import SymMat
 
 
 def test_astype():

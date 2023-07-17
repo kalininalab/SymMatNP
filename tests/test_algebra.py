@@ -1,7 +1,7 @@
 import numpy as np
 
+from symmatnp.symmat import SymMat
 from tests.test_arithmetics import check_class
-from symmatnp import SymMat
 from tests.utils import a, b, c, d
 
 

@@ -1,7 +1,7 @@
 import numpy as np
 import pytest
 
-from symmatnp import SymMat
+from symmatnp.symmat import SymMat
 
 from tests.utils import a, b, c, d
 
