@@ -27,7 +27,7 @@ jobs:
       - name: Run tests
         run: |
           cd tests
-          poetry run python -m pytest --cov=../symmatnp.py --cov-report=xml -m "not todo and not slow"
+          poetry run python -m pytest --cov=../symmatnp/ --cov-report=xml
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
