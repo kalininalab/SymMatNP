@@ -4,6 +4,13 @@ import pickle
 import numpy as np
 
 
+def from_square(array, dtype):
+    out = SymMat(array.shape[0], array[0, 0])
+    for i in range(array.shape[0]):
+        out[i, (i + 1):] = array[i, (i + 1):]
+    return out
+
+
 def convert_single_index(i, j):
     return (i, j) if i < j else (j, i)
 
@@ -57,7 +64,7 @@ class SymMat(np.ndarray):
 
         return obj
 
-    def convert_index(self, indices):
+    def _convert_index(self, indices):
         if isinstance(indices, int) or isinstance(indices, slice):
             indices = (indices, slice(0, self.num, 1))
         if isinstance(indices, tuple) and len(indices) == 2:
@@ -245,7 +252,7 @@ class SymMat(np.ndarray):
     #     return getattr(self.obj, item)
 
     def __getitem__(self, indices):
-        converted_indices, shape = self.convert_index(indices)
+        converted_indices, shape = self._convert_index(indices)
         values = []
         for i, j in converted_indices:
             if i == j:
@@ -479,7 +486,7 @@ class SymMat(np.ndarray):
         super().__setattr__(key, value)
 
     def __setitem__(self, indices, value):
-        converted_indices, shape = self.convert_index(indices)
+        converted_indices, shape = self._convert_index(indices)
         value = value.flatten()
         if not isinstance(value, np.ndarray):
             value = np.array(value)
